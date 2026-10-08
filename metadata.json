@@ -1,0 +1,6 @@
+{
+  "name": "Nexora - 3D Digital Engineering & AI Agency",
+  "description": "Nexora is a high-performance 3D spatial digital agency specializing in intelligent web architectures, AI automation, custom LLMs, e-commerce, and enterprise security.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

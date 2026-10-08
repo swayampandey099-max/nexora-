@@ -1,0 +1,49 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "Registered user profile details",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "description": "Firebase Auth UID" },
+        "email": { "type": "string", "description": "User email address" },
+        "displayName": { "type": "string", "description": "Full name of the user" },
+        "photoURL": { "type": "string", "description": "Profile avatar image URL" },
+        "createdAt": { "type": "string", "description": "Account registration timestamp" }
+      },
+      "required": ["uid", "email"]
+    },
+    "Booking": {
+      "title": "Booking",
+      "description": "Scheduled discovery call or architectural consultation",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique booking document ID" },
+        "userId": { "type": "string", "description": "UID of the user who scheduled the session" },
+        "clientName": { "type": "string", "description": "Contact person name" },
+        "clientEmail": { "type": "string", "description": "Contact email address" },
+        "company": { "type": "string", "description": "Company or startup brand name" },
+        "serviceId": { "type": "string", "description": "Selected Nexora capability ID" },
+        "serviceName": { "type": "string", "description": "Title of the capability" },
+        "timeline": { "type": "string", "description": "Target launch timeline" },
+        "budget": { "type": "string", "description": "Estimated budget tier" },
+        "preferredDate": { "type": "string", "description": "Selected session date" },
+        "preferredTime": { "type": "string", "description": "Selected session time slot" },
+        "notes": { "type": "string", "description": "Project goals or comments" },
+        "status": { "type": "string", "description": "Booking status", "enum": ["confirmed", "completed", "cancelled"] },
+        "createdAt": { "type": "string", "description": "Booking creation ISO timestamp" }
+      },
+      "required": ["clientName", "clientEmail", "serviceName", "preferredDate", "preferredTime", "status"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "User profile information"
+    },
+    "/bookings/{bookingId}": {
+      "schema": "Booking",
+      "description": "User scheduled discovery calls"
+    }
+  }
+}
