@@ -1,7 +1,7 @@
 import React from 'react';
 import ownerPfp from '../assets/images/owner_pfp.webp';
 import { sound } from '../utils/audio';
-import { Instagram } from 'lucide-react';
+import { Instagram, Shield } from 'lucide-react';
 
 interface OwnerMember {
   id: string;
@@ -12,6 +12,10 @@ interface OwnerMember {
     handle: string;
     url: string;
   };
+}
+
+interface OwnershipSectionProps {
+  onOpenAdminPortal?: () => void;
 }
 
 const OWNERS: OwnerMember[] = [
@@ -39,23 +43,39 @@ const OWNERS: OwnerMember[] = [
   },
 ];
 
-export const OwnershipSection: React.FC = () => {
+export const OwnershipSection: React.FC<OwnershipSectionProps> = ({ onOpenAdminPortal }) => {
   return (
     <section id="ownership" className="relative py-12 sm:py-16 border-b border-neutral-300/60 overflow-hidden reveal-init">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="max-w-3xl space-y-3 mb-10 text-left">
-          <div className="text-xs uppercase tracking-widest font-bold text-amber-800 flex items-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-amber-500 inline-block animate-pulse" />
-            <span>Studio Leadership</span>
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10 text-left">
+          <div className="max-w-2xl space-y-3">
+            <div className="text-xs uppercase tracking-widest font-bold text-amber-800 flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-amber-500 inline-block animate-pulse" />
+              <span>Studio Leadership</span>
+            </div>
+            <h2 className="text-3xl sm:text-5xl font-black tracking-tight text-neutral-900 leading-tight">
+              Agency <span className="text-highlight">Ownership</span>.
+            </h2>
+            <p className="text-neutral-600 text-sm sm:text-base leading-relaxed">
+              Direct leadership by the studio founders. Transparent, accountable, and focused on pure engineering craft.
+            </p>
           </div>
-          <h2 className="text-3xl sm:text-5xl font-black tracking-tight text-neutral-900 leading-tight">
-            Agency <span className="text-highlight">Ownership</span>.
-          </h2>
-          <p className="text-neutral-600 text-sm sm:text-base leading-relaxed">
-            Direct leadership by the studio founders. Transparent, accountable, and focused on pure engineering craft.
-          </p>
+
+          {onOpenAdminPortal && (
+            <button
+              onClick={() => {
+                sound.playClick();
+                onOpenAdminPortal();
+              }}
+              className="self-start sm:self-auto px-3.5 py-2 rounded-xl neo-box text-xs font-mono font-bold text-neutral-800 hover:text-amber-800 transition-colors flex items-center gap-2 cursor-pointer shadow-xs border border-white/80"
+              title="Launch Executive Command Portal"
+            >
+              <Shield className="w-3.5 h-3.5 text-amber-600" />
+              <span>Executive Admin Portal</span>
+            </button>
+          )}
         </div>
 
         {/* Floating Side-by-Side Owners Grid */}

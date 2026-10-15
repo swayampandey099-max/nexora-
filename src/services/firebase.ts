@@ -57,6 +57,7 @@ export function isUserOwner(user: User | null): boolean {
   const email = user.email.toLowerCase();
   return (
     email === OWNER_EMAIL.toLowerCase() ||
+    email === 'swayampandey099@gmail.com' ||
     email.startsWith('admin@')
   );
 }

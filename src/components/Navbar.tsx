@@ -159,23 +159,25 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookClick, onOpenOwnerPortal }
             {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4 text-amber-600" />}
           </button>
 
-          {/* Dedicated Owner Portal Access Button - ONLY visible when authenticated as owner */}
-          {isOwner && (
-            <button
-              onClick={() => {
-                sound.playClick();
-                onOpenOwnerPortal();
-              }}
-              title="Owner & Executive Command Portal"
-              className="p-2.5 rounded-xl cursor-pointer transition-all flex items-center gap-1.5 bg-neutral-950 text-amber-300 border border-amber-400/40 shadow-[0_0_12px_rgba(245,158,11,0.2)]"
-              aria-label="Owner Access Portal"
-            >
-              <Shield className="w-4 h-4 text-amber-400" />
-              <span className="text-[11px] font-extrabold uppercase tracking-wider hidden sm:inline">
-                Owner HQ
-              </span>
-            </button>
-          )}
+          {/* Dedicated Owner & Admin Command Portal Button - Always accessible */}
+          <button
+            onClick={() => {
+              sound.playClick();
+              onOpenOwnerPortal();
+            }}
+            title={isOwner ? "Owner & Executive Command Portal (Authorized)" : "Executive Admin Portal Login"}
+            className={`p-2 sm:px-3 sm:py-2 rounded-xl cursor-pointer transition-all flex items-center gap-1.5 ${
+              isOwner
+                ? 'bg-neutral-950 text-amber-300 border border-amber-400/40 shadow-[0_0_12px_rgba(245,158,11,0.2)]'
+                : 'glass-btn-neutral text-neutral-700 hover:text-amber-900 border border-neutral-300/80 shadow-2xs hover:border-amber-400/50'
+            }`}
+            aria-label="Executive Admin Portal"
+          >
+            <Shield className={`w-4 h-4 ${isOwner ? 'text-amber-400' : 'text-amber-600'}`} />
+            <span className="text-[11px] font-bold uppercase tracking-wider hidden sm:inline">
+              {isOwner ? 'Owner HQ' : 'Admin'}
+            </span>
+          </button>
 
           {/* Firebase Google Auth Button */}
           {currentUser ? (
@@ -284,19 +286,21 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookClick, onOpenOwnerPortal }
           </nav>
 
           <div className="pt-4 border-t border-neutral-200/60 flex flex-col gap-3">
-            {isOwner && (
-              <button
-                onClick={() => {
-                  sound.playClick();
-                  setMobileMenuOpen(false);
-                  onOpenOwnerPortal();
-                }}
-                className="w-full py-2.5 rounded-xl bg-neutral-950 text-amber-300 font-bold text-xs flex items-center justify-center gap-2 cursor-pointer border border-amber-400/40"
-              >
-                <Shield className="w-4 h-4 text-amber-400" />
-                <span>Executive Owner Portal</span>
-              </button>
-            )}
+            <button
+              onClick={() => {
+                sound.playClick();
+                setMobileMenuOpen(false);
+                onOpenOwnerPortal();
+              }}
+              className={`w-full py-2.5 rounded-xl font-bold text-xs flex items-center justify-center gap-2 cursor-pointer border ${
+                isOwner
+                  ? 'bg-neutral-950 text-amber-300 border-amber-400/40'
+                  : 'bg-white/80 text-neutral-800 border-neutral-300 hover:border-amber-400'
+              }`}
+            >
+              <Shield className={`w-4 h-4 ${isOwner ? 'text-amber-400' : 'text-amber-600'}`} />
+              <span>{isOwner ? 'Executive Owner Portal (Active)' : 'Executive Admin Portal'}</span>
+            </button>
 
             {!currentUser && (
               <button
