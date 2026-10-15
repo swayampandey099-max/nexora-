@@ -13,10 +13,9 @@ import { ServiceModal } from './components/ServiceModal';
 import { SmokeBackground } from './components/SmokeBackground';
 import { NexoraChatbot } from './components/NexoraChatbot';
 import { OwnerPortalModal } from './components/OwnerPortalModal';
-import { AdminAuthModal } from './components/AdminAuthModal';
 import { ServiceItem } from './types';
 import { onAuthChange, isUserOwner, logOut } from './services/firebase';
-import { grantOwnerSession, revokeOwnerSession, isOwnerSessionActive } from './services/ownerAuth';
+import { grantOwnerSession, revokeOwnerSession } from './services/ownerAuth';
 import { loadManager } from './utils/loadManager';
 import blueprintBg from './assets/images/blueprint_v2_bg_opt.webp';
 import ownerPfp from './assets/images/owner_pfp.webp';
@@ -35,45 +34,25 @@ export default function App() {
     loadManager.preloadImage(ownerPfp);
   }, []);
 
-  // Owner authentication state: true if signed in as Nexora Admin or session is active
-  const [isOwner, setIsOwner] = useState(() => isOwnerSessionActive());
+  // Owner authentication state: STRICTLY true ONLY if signed in with swayampandey099@gmail.com
+  const [isOwner, setIsOwner] = useState(false);
   const [isOwnerPortalOpen, setIsOwnerPortalOpen] = useState(false);
-  const [isAdminAuthModalOpen, setIsAdminAuthModalOpen] = useState(false);
 
   // Monitor Firebase auth: Automatically open Admin Portal when authorized owner signs in
   useEffect(() => {
-    if (isOwnerSessionActive()) {
-      setIsOwner(true);
-    }
-
     const unsubscribe = onAuthChange((user) => {
       const ownerAuthorized = isUserOwner(user);
+      setIsOwner(ownerAuthorized);
       if (ownerAuthorized) {
-        setIsOwner(true);
         grantOwnerSession();
-      } else if (!isOwnerSessionActive()) {
-        setIsOwner(false);
+      } else {
+        revokeOwnerSession();
+        setIsOwnerPortalOpen(false);
       }
     });
 
-    // Keyboard shortcut Ctrl+Shift+A or Cmd+Shift+A to trigger Admin Portal
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'a' || e.key === 'A')) {
-        e.preventDefault();
-        handleOpenOwnerPortal();
-      }
-    };
-
-    if (window.location.hash === '#admin') {
-      setTimeout(() => handleOpenOwnerPortal(), 150);
-    }
-
-    window.addEventListener('keydown', handleKeyDown);
-    return () => {
-      unsubscribe();
-      window.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [isOwner]);
+    return () => unsubscribe();
+  }, []);
 
   // Down-to-up scroll reveal animation observer for all sections
   useEffect(() => {
@@ -103,11 +82,8 @@ export default function App() {
   }, []);
 
   const handleOpenOwnerPortal = () => {
-    if (isOwner || isOwnerSessionActive()) {
-      setIsOwner(true);
+    if (isOwner) {
       setIsOwnerPortalOpen(true);
-    } else {
-      setIsAdminAuthModalOpen(true);
     }
   };
 
@@ -160,8 +136,9 @@ export default function App() {
       {/* 2D Animated Smoke Pattern that follows the cursor in the background */}
       <SmokeBackground />
 
-      {/* Top Glassmorphic Navigation with Owner Access (Exclusively for Nexora Admin) */}
+      {/* Top Glassmorphic Navigation with Owner Access (Exclusively for swayampandey099@gmail.com) */}
       <Navbar
+        isOwner={isOwner}
         onBookClick={() => scrollToBooking()}
         onOpenOwnerPortal={handleOpenOwnerPortal}
       />
@@ -190,7 +167,10 @@ export default function App() {
         <ProofSection />
 
         {/* Studio Ownership & Leadership (Floating side by side) */}
-        <OwnershipSection onOpenAdminPortal={handleOpenOwnerPortal} />
+        <OwnershipSection
+          isOwner={isOwner}
+          onOpenAdminPortal={handleOpenOwnerPortal}
+        />
 
         {/* Direct Meeting Booking (No mail client redirect, instant confirmation) */}
         <BookingSection
@@ -223,17 +203,6 @@ export default function App() {
           onLogout={handleOwnerLogout}
         />
       )}
-
-      {/* Executive Admin Authentication Modal */}
-      <AdminAuthModal
-        isOpen={isAdminAuthModalOpen}
-        onClose={() => setIsAdminAuthModalOpen(false)}
-        onSuccess={() => {
-          setIsOwner(true);
-          setIsAdminAuthModalOpen(false);
-          setIsOwnerPortalOpen(true);
-        }}
-      />
     </div>
   );
 }

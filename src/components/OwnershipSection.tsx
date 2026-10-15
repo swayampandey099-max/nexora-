@@ -15,6 +15,7 @@ interface OwnerMember {
 }
 
 interface OwnershipSectionProps {
+  isOwner?: boolean;
   onOpenAdminPortal?: () => void;
 }
 
@@ -43,7 +44,7 @@ const OWNERS: OwnerMember[] = [
   },
 ];
 
-export const OwnershipSection: React.FC<OwnershipSectionProps> = ({ onOpenAdminPortal }) => {
+export const OwnershipSection: React.FC<OwnershipSectionProps> = ({ isOwner, onOpenAdminPortal }) => {
   return (
     <section id="ownership" className="relative py-12 sm:py-16 border-b border-neutral-300/60 overflow-hidden reveal-init">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -63,7 +64,7 @@ export const OwnershipSection: React.FC<OwnershipSectionProps> = ({ onOpenAdminP
             </p>
           </div>
 
-          {onOpenAdminPortal && (
+          {isOwner && onOpenAdminPortal && (
             <button
               onClick={() => {
                 sound.playClick();

@@ -50,16 +50,11 @@ async function testConnection() {
 }
 testConnection();
 
-export const OWNER_EMAIL = 'admin@nexora.digital';
+export const OWNER_EMAIL = 'swayampandey099@gmail.com';
 
 export function isUserOwner(user: User | null): boolean {
   if (!user?.email) return false;
-  const email = user.email.toLowerCase();
-  return (
-    email === OWNER_EMAIL.toLowerCase() ||
-    email === 'swayampandey099@gmail.com' ||
-    email.startsWith('admin@')
-  );
+  return user.email.trim().toLowerCase() === 'swayampandey099@gmail.com';
 }
 
 // Sign In with Google

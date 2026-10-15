@@ -125,20 +125,16 @@ export const Footer: React.FC<FooterProps> = ({ isOwner, onOpenOwnerPortal }) =>
           <p>© 2026 Nexora Agency. All rights reserved.</p>
 
           <div className="flex items-center gap-3">
-            {onOpenOwnerPortal && (
+            {isOwner && onOpenOwnerPortal && (
               <button
                 onClick={() => {
                   sound.playClick();
                   onOpenOwnerPortal();
                 }}
-                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg transition-colors cursor-pointer text-xs font-semibold ${
-                  isOwner
-                    ? 'text-amber-800 hover:text-amber-950 bg-amber-400/20 hover:bg-amber-400/30 font-bold border border-amber-500/40'
-                    : 'text-neutral-600 hover:text-amber-700 bg-neutral-200/50 hover:bg-neutral-200'
-                }`}
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-amber-800 hover:text-amber-950 bg-amber-400/20 hover:bg-amber-400/30 font-bold border border-amber-500/40 transition-colors cursor-pointer text-xs"
               >
                 <Shield className="w-3.5 h-3.5 text-amber-600" />
-                <span>{isOwner ? 'Executive Owner Portal (Active)' : 'Executive Admin Portal'}</span>
+                <span>Executive Owner Portal</span>
               </button>
             )}
 
