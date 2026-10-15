@@ -1,0 +1,191 @@
+import { ServiceItem } from '../types';
+
+export const SERVICES_DATA: ServiceItem[] = [
+  {
+    id: 'advanced-web-design',
+    number: '01',
+    title: 'Advanced Web Page Designing',
+    category: 'web',
+    tagline: 'High-conversion, bespoke web design engineered for modern scaling brands.',
+    description: 'Custom digital experiences built with editorial typography, sub-100ms response latencies, clean responsive layouts, and conversion-engineered visual storytelling.',
+    deliverables: [
+      'Custom modern web architecture & bespoke layout',
+      'Mobile-first responsive typography & fluid interactions',
+      'High-conversion sales structure & clear user flows',
+      'Ultra-fast performance (<0.8s Core Web Vitals)'
+    ],
+    metrics: '+310% Engagement Lift',
+    image: 'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1200&q=80',
+    featured: true,
+  },
+  {
+    id: 'custom-ecommerce',
+    number: '02',
+    title: 'Custom E-Commerce Solutions',
+    category: 'web',
+    tagline: 'Frictionless storefronts with instant checkout and automated cart recovery.',
+    description: 'High-throughput transactional stores engineered for seamless purchasing, international currency handling, custom checkout flows, and automated inventory synchronization.',
+    deliverables: [
+      'Sub-second mobile checkout experience',
+      'Custom cart rules, product bundles & subscription tiers',
+      'Real-time inventory and ERP gateway integration',
+      'Multi-currency, localized tax and compliance routing'
+    ],
+    metrics: '99.99% Transaction Uptime',
+    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80',
+    featured: false,
+  },
+  {
+    id: 'seo-strategies',
+    number: '03',
+    title: 'Search Engine Optimization Strategies',
+    category: 'web',
+    tagline: 'Topical authority and deep technical SEO to capture qualified customer demand.',
+    description: 'Data-driven semantic indexation, schema-graph architecture, programmatic page structure, and authority-building content pipelines designed for compounding organic search traffic.',
+    deliverables: [
+      'Full semantic schema graph and rich entity mapping',
+      'Core Web Vitals greenline optimization (<0.8s LCP)',
+      'High-intent search query optimization',
+      'Continuous crawl budget & indexation surveillance'
+    ],
+    metrics: '+4.2x Organic Inbound Pipeline',
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80',
+    featured: false,
+  },
+  {
+    id: 'ai-automation',
+    number: '04',
+    title: 'AI Automation & Workflows',
+    category: 'automation',
+    tagline: 'Autonomous orchestration pipelines that eliminate manual operational bottlenecks.',
+    description: 'Automated business workflows that route customer requests, sync CRM records, extract structured data from emails, and trigger notifications without manual intervention.',
+    deliverables: [
+      'Multi-agent workflow orchestration via webhooks & APIs',
+      'Automated invoice, receipt & document data extraction',
+      'CRM pipeline synchronization (HubSpot, Salesforce, Notion)',
+      'Deterministic error-handling & human-in-the-loop escalation'
+    ],
+    metrics: '1,400+ Manual Hours Saved / Year',
+    image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80',
+    featured: true,
+  },
+  {
+    id: 'meta-cloud-api-whatsapp',
+    number: '05',
+    title: 'Official Meta Cloud API WhatsApp',
+    category: 'whatsapp',
+    tagline: 'Direct, reliable Meta Cloud API integration with official green tick verification.',
+    description: 'Enterprise WhatsApp infrastructure connected straight to Meta servers. High-volume broadcast capability, two-way conversational routing, and zero risk of phone number bans.',
+    deliverables: [
+      'Meta Business Manager verification & green tick onboarding',
+      'Direct webhook event stream to your server stack',
+      'High-throughput message throughput (Tier 3 ready)',
+      'Automated opt-in compliance & template approval pipeline'
+    ],
+    metrics: '99.98% Message Delivery Rate',
+    image: 'https://images.unsplash.com/photo-1577563908411-5077b6dc7624?auto=format&fit=crop&w=1200&q=80',
+    featured: false,
+  },
+  {
+    id: 'whatsapp-automation',
+    number: '06',
+    title: 'WhatsApp Automation & CRM Sync',
+    category: 'whatsapp',
+    tagline: 'Instant customer lead capture, order updates, and CRM sync directly in chat.',
+    description: 'Trigger immediate automated WhatsApp conversations when leads submit website forms, confirm payments, abandon checkout carts, or request urgent appointment bookings.',
+    deliverables: [
+      'Instant lead qualification & automated triage trees',
+      'Automated appointment confirmations & reminder pings',
+      'Stripe / Shopify transaction alerts & shipping tracking',
+      'CRM contact creation & chat history archival'
+    ],
+    metrics: '88% First-Response Rate (<30s)',
+    image: 'https://images.unsplash.com/photo-1556740758-90de374c12ad?auto=format&fit=crop&w=1200&q=80',
+    featured: false,
+  },
+  {
+    id: 'customized-business-whatsapp',
+    number: '07',
+    title: 'Customized Business WhatsApp Systems',
+    category: 'whatsapp',
+    tagline: 'Multi-agent shared team inboxes, customized routing, and team assignment.',
+    description: 'Turn WhatsApp into a collaborative team helpdesk. Multi-agent assignment, private internal staff notes, automated escalation logic, and executive conversion analytics.',
+    deliverables: [
+      'Multi-agent shared inbox with custom permission tiers',
+      'Departmental routing (Sales, Billing, Technical Support)',
+      'Internal staff notes & collision detection',
+      'Comprehensive agent response latency dashboard'
+    ],
+    metrics: '3.4x Faster Ticket Resolution',
+    image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80',
+    featured: false,
+  },
+  {
+    id: 'whatsapp-chatbots',
+    number: '08',
+    title: 'WhatsApp Business Chatbots',
+    category: 'whatsapp',
+    tagline: 'Intelligent conversational bots that answer FAQs and capture orders 24/7.',
+    description: 'Context-aware conversational assistants capable of querying live product inventory, scheduling meetings, and answering complex customer inquiries around the clock.',
+    deliverables: [
+      'Natural-language FAQ and knowledge base lookup',
+      'Dynamic product catalog recommendation engine',
+      'Interactive button menus & appointment booking flows',
+      'Smooth handoff to live human representative on complex queries'
+    ],
+    metrics: '72% Autonomous Query Resolution',
+    image: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=1200&q=80',
+    featured: true,
+  },
+  {
+    id: 'custom-enterprise-ai-models',
+    number: '09',
+    title: 'Custom Enterprise AI Models',
+    category: 'ai',
+    tagline: 'Proprietary intelligence engines trained exclusively on your business data.',
+    description: 'Custom-engineered AI models that reflect your organization’s domain knowledge, compliance guidelines, tone of voice, and confidential company workflows.',
+    deliverables: [
+      'Domain-adapted model architecture with structured JSON outputs',
+      'Strict guardrails preventing hallucination and topic drift',
+      'Internal policy, safety, and bias calibration audits',
+      'Dedicated API endpoints with private model serving'
+    ],
+    metrics: 'Zero External Data Leakage Guarantee',
+    image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80',
+    featured: false,
+  },
+  {
+    id: 'fine-tuned-domain-llms',
+    number: '10',
+    title: 'Fine-Tuned Domain LLMs',
+    category: 'ai',
+    tagline: 'Specialized language models optimized for specialized technical & legal fields.',
+    description: 'Precision fine-tuning on your company manuals, historical contracts, support tickets, and code repositories to deliver accurate, domain-expert answers.',
+    deliverables: [
+      'High-quality synthetic dataset generation & curation',
+      'Supervised Fine-Tuning (SFT) & direct preference alignment',
+      'Retrieval-Augmented Generation (RAG) on proprietary docs',
+      'Comprehensive benchmark testing against domain standards'
+    ],
+    metrics: '99.4% Domain Factual Accuracy',
+    image: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1200&q=80',
+    featured: false,
+  },
+  {
+    id: 'secure-local-ai-deployment',
+    number: '11',
+    title: 'Secure Local AI Deployment',
+    category: 'ai',
+    tagline: 'On-premise & private VPC deployment ensuring 100% data sovereignty.',
+    description: 'Deploy cutting-edge open models on your own servers or air-gapped infrastructure. Zero telemetry, zero reliance on external third-party cloud APIs, and full regulatory compliance.',
+    deliverables: [
+      'On-premise GPU cluster setup or private cloud VPC deployment',
+      'Air-gapped architecture for legal, healthcare & finance standards',
+      'Hardware-optimized inference (vLLM / TensorRT-LLM)',
+      'Continuous uptime monitoring and automated model failover'
+    ],
+    metrics: '100% On-Premise Data Isolation',
+    image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80',
+    featured: false,
+  },
+];
